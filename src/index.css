@@ -59,6 +59,11 @@ html{
   background-color: lightblue;
 }
 
+.header-index,
+.content-index{
+  flex-basis: 3%;
+}
+
 .header-title,
 .content-title{
   flex-basis: 15%;
@@ -77,9 +82,58 @@ html{
 }
 .header-link,
 .content-link{
-  flex-basis: 28%;
+  flex-basis: 27%;
 }
 .header-description,
 .content-description{
-  flex-basis: 40%;
+  flex-basis: 38%;
 }
+
+
+/* ________ Common __________ */
+
+.margin-left-1{
+  margin-left: 1rem;
+}
+
+.padding-left-05{
+  padding-left: 0.5rem;
+}
+
+.padding-right-05{
+  padding-right: 0.5rem;
+}
+
+/* __________________________ */
+
+
+
+/* ________ Carret Properties __________ */
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+/* __________________________ */

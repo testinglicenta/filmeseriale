@@ -1,8 +1,6 @@
 <template>
   <div>
     <h1>{{ msg }}</h1>
-    <button @click="count++">count is: {{ count }}</button>
-    <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
 
     <div class="col-flex-center">
       <button class="btn-films" @click="onClickBtn('films')">
@@ -16,25 +14,28 @@
     <input type="file" id="file-selector" multiple @change="selectedFile($event)">
     <div id='output'>
     </div>
+    <div>Total {{ filteredList.length }}</div>
     <div class="table-wrapper">
         <div class="header-table col-flex-center">
+            <div class="header-key header-index">Index</div>
             <div class="header-key header-title"  @click="sortBy('title')">
               <span class="header-year-title" @click="sortBy('title')">Title</span>
               <input type="text" placeholder="search" @keyup="filterInput($event, 'title')">
             </div>
             <div class="header-key header-year">
-              <span class="header-year-text" @click="sortBy('year')">Year</span>
+              <span class="header-year-text padding-left-05 padding-right-05" @click="sortBy('year')">Year<i class="margin-left-1 arrow" :class="{'down':!sortYear, 'up':sortYear}"></i></span>
               <input type="text" placeholder="search" @keyup="filterInput($event, 'year')">
             </div>
             <div class="header-key header-status"  @click="sortBy('status')">Status</div>
             <div class="header-key header-rating">
-              <span class="header-rating-text" @click="sortBy('rating')">Rating</span>
+              <span class="header-rating-text padding-left-05 padding-right-05" @click="sortBy('rating')">Rating<i class="margin-left-1 arrow" :class="{'down':!sortRating, 'up':sortRating}"></i></span>
               <input type="text" placeholder="search" @keyup="filterInput($event, 'rating')">
             </div>
             <div class="header-key header-link"  @click="sortBy('link')">Link</div>
             <div class="header-key header-description"  @click="sortBy('description')">Description</div>
         </div>
-        <div v-for="item in filteredList" :key="item" class="content-wrapper col-flex-center">
+        <div v-for="(item, i) in filteredList" :key="item" class="content-wrapper col-flex-center">
+            <div class="content-key content-index">{{ i+1 }}</div>
             <div class="content-key content-title"  @click="sortBy('title')"><span>{{ item.title }}</span></div>
             <div class="content-key content-year"  @click="sortBy('year')"><span>{{ item.year }}</span></div>
             <div class="content-key content-status"  @click="sortBy('status')"><span>{{ item.status }}</span></div>
@@ -54,7 +55,6 @@ export default {
   },
   data() {
     return {
-      count: 0,
       list: [],
       filteredList: [],
       inputTitle: '',
