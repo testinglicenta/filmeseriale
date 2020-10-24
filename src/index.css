@@ -34,6 +34,31 @@ html{
   border-right: 1px solid #1f1e1e;
 }
 
+.header-title input{
+  max-width: 200px;
+}
+
+.header-rating input{
+  max-width: 50px;
+}
+.header-year input {
+  max-width: 50px;
+}
+
+.header-title,
+.header-year,
+.header-rating{
+  display: flex;
+  flex-flow: column;
+}
+
+.header-title-text,
+.header-year-text,
+.header-rating-text{
+  cursor: pointer;
+  background-color: lightblue;
+}
+
 .header-title,
 .content-title{
   flex-basis: 15%;
@@ -48,11 +73,11 @@ html{
 }
 .header-rating,
 .content-rating{
-  flex-basis: 3%;
+  flex-basis: 5%;
 }
 .header-link,
 .content-link{
-  flex-basis: 30%;
+  flex-basis: 28%;
 }
 .header-description,
 .content-description{
