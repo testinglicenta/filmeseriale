@@ -155,41 +155,138 @@ export default {
       }else{
         val = e.target.value.toLowerCase();
       }
+      this.filteredList = [];
       clearTimeout(this.timeout);
       switch (metakey) {
         case 'title':
           this.inputTitle = val;
           this.timeout = setTimeout(() => {
             if(val){
-              if(this.inputYear && this.inputRating){
+              if(this.minInputYear && this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key].toLowerCase().includes(val) && item['year'] == this.inputYear && item['rating'] == this.inputRating;
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
                 });
-              }else if(this.inputYear){
+              }else if(this.minInputYear && this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key].toLowerCase().includes(val) && item['year'] == this.inputYear;
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
                 });
-              }else if(this.inputRating){
+              }else if(this.minInputYear && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key].toLowerCase().includes(val) && item['rating'] == this.inputRating;
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item[key].toLowerCase().includes(this.inputTitle) && Number(item['rating']) <= this.maxInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key].toLowerCase().includes(val);
+                  return item[key].toLowerCase().includes(this.inputTitle);
                 });
               }
             }else{
-              if(this.inputYear && this.inputRating){
+              if(this.minInputYear && this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] == this.inputYear && item['rating'] == this.inputRating;
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
                 });
-              }else if(this.inputYear){
+              }else if(this.minInputYear && this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] == this.inputYear;
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
                 });
-              }else if(this.inputRating){
+              }else if(this.minInputYear && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['rating'] == this.inputRating;
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputRating && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['rating']) >= this.minInputRating && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['rating']) <= this.maxInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
@@ -205,87 +302,85 @@ export default {
             if(val){
               if(this.inputTitle && this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.maxInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
                 });
               }else if(this.inputTitle && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] <= this.maxInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle);
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle);
                 });
               }else if(this.maxInputYear){
-                console.log('got here', val, 'maxInputYear',this.maxInputYear);
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] <= this.maxInputYear;
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear;
                 });
-                console.log('got here after ', this.filteredList.length);
               }else if(this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) >= val && item['rating'] >= this.minInputRating;
                 });
               }else if(this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) >= val && item['rating'] <= this.maxInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val;
+                  return Number(item[key]) >= val;
                 });
               }
             }else{
               if(this.inputTitle && this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear && item['rating'] <= this.maxInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.maxInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -293,7 +388,7 @@ export default {
                 });
               }else if(this.inputTitle && this.maxInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] <= this.maxInputYear;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
                 });
               }else if(this.inputTitle && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -305,11 +400,11 @@ export default {
                 });
               }else if(this.maxInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] <= this.maxInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item['year']) <= this.maxInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] <= this.maxInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item['year']) <= this.maxInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -321,7 +416,7 @@ export default {
                 });
               }else if(this.maxInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] <= this.maxInputYear;
+                  return Number(item['year']) <= this.maxInputYear;
                 });
               }else if(this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -345,85 +440,85 @@ export default {
             if(val){
               if(this.inputTitle && this.minInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.minInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
                 });
               }else if(this.inputTitle && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.minInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] >= this.minInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['title'].toLowerCase().includes(this.inputTitle);
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle);
                 });
               }else if(this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['year'] >= this.minInputYear;
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear;
                 });
               }else if(this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] >= this.minInputRating;
+                  return Number(item[key]) <= val && item['rating'] >= this.minInputRating;
                 });
               }else if(this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val && item['rating'] <= this.maxInputRating;
+                  return Number(item[key]) <= val && item['rating'] <= this.maxInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] >= val;
+                  return Number(item[key]) <= val;
                 });
               }
             }else{
               if(this.inputTitle && this.minInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.inputTitle && this.minInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear && item['rating'] <= this.maxInputRating;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputYear && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
+                  return Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.inputTitle && this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -431,7 +526,7 @@ export default {
                 });
               }else if(this.inputTitle && this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] >= this.minInputYear;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
                 });
               }else if(this.inputTitle && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -443,11 +538,11 @@ export default {
                 });
               }else if(this.minInputYear && this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] >= this.minInputYear && item['rating'] >= this.minInputRating;
+                  return Number(item['year']) >= this.minInputYear && item['rating'] >= this.minInputRating;
                 });
               }else if(this.minInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] >= this.minInputYear && item['rating'] <= this.maxInputRating;
+                  return Number(item['year']) >= this.minInputYear && item['rating'] <= this.maxInputRating;
                 });
               }else if(this.minInputRating && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -459,7 +554,7 @@ export default {
                 });
               }else if(this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] >= this.minInputYear;
+                  return Number(item['year']) >= this.minInputYear;
                 });
               }else if(this.minInputRating){
                 this.filteredList = this.list.filter((item)=>{
@@ -477,39 +572,273 @@ export default {
             }
           }, this.timeoutDelay);
           break;
-        case 'rating':
-          this.inputRating = val;
+        case 'min-rating':
+          this.minInputRating = val;
           this.timeout = setTimeout(() => {
             if(val){
-              if(this.inputTitle && this.inputYear){
+              if(this.inputTitle && this.minInputYear && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] == val && item['title'].toLowerCase().includes(this.inputTitle) && item['year'] == this.inputYear;
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
                 });
               }else if(this.inputTitle){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] == val && item['title'].toLowerCase().includes(this.inputTitle);
+                  return Number(item[key]) >= val && item['title'].toLowerCase().includes(this.inputTitle);
                 });
-              }else if(this.inputYear){
+              }else if(this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] == val && item['year'] == this.inputYear;
+                  return Number(item[key]) >= val && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) >= val && Number(item['rating']) <= this.maxInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
-                  return item[key] == val;
+                  return Number(item[key]) >= val;
                 });
               }
             }else{
-              if(this.inputTitle && this.inputYear){
+              if(this.inputTitle && this.minInputYear && this.maxInputYear && this.maxInputRating){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['title'].toLowerCase().includes(this.inputTitle) && item['year'] == this.inputYear;
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['rating']) <= this.maxInputRating;
+                });
+              }else if(this.maxInputYear && this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear && Number(item['rating']) <= this.maxInputRating;
                 });
               }else if(this.inputTitle){
                 this.filteredList = this.list.filter((item)=>{
                   return item['title'].toLowerCase().includes(this.inputTitle);
                 });
-              }else if(this.inputYear){
+              }else if(this.minInputYear){
                 this.filteredList = this.list.filter((item)=>{
-                  return item['year'] == this.inputYear;
+                  return Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.maxInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['rating']) <= this.maxInputRating;
+                });
+              }else{
+                this.filteredList = this.list.filter((item)=>{
+                  return true;
+                });
+              }
+            }
+          }, this.timeoutDelay);
+          break;
+        case 'max-rating':
+          this.maxInputRating = val;
+          this.timeout = setTimeout(() => {
+            if(val){
+              if(this.inputTitle && this.minInputYear && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle) && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && item['title'].toLowerCase().includes(this.inputTitle);
+                });
+              }else if(this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item[key]) <= val && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return (Number(item[key]) <= val) && (Number(item['rating']) >= this.minInputRating);
+                });
+              }else{
+                this.filteredList = this.list.filter((item)=>{
+                  return (Number(item[key]) <= val);
+                });
+              }
+            }else{
+              if(this.inputTitle && this.minInputYear && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle && this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.inputTitle && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.inputTitle && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle) && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.minInputYear && this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.maxInputYear && this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear && Number(item['rating']) >= this.minInputRating;
+                });
+              }else if(this.inputTitle){
+                this.filteredList = this.list.filter((item)=>{
+                  return item['title'].toLowerCase().includes(this.inputTitle);
+                });
+              }else if(this.minInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) >= this.minInputYear;
+                });
+              }else if(this.maxInputYear){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['year']) <= this.maxInputYear;
+                });
+              }else if(this.minInputRating){
+                this.filteredList = this.list.filter((item)=>{
+                  return Number(item['rating']) >= this.minInputRating;
                 });
               }else{
                 this.filteredList = this.list.filter((item)=>{
@@ -520,7 +849,7 @@ export default {
           }, this.timeoutDelay);
           break;
       }
-      console.log('FINISH FILTER', val, this.filteredList);
+      console.log('FINISH FILTER', val, 'length', this.filteredList.length ,'metakey', metakey , 'key', key);
     }
   }
 }
