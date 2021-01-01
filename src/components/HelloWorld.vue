@@ -3,12 +3,12 @@
     <h1>{{ msg }}</h1>
 
     <div class="col-flex-center">
-      <button class="btn-films" @click="onClickBtn('films')">
+      <!-- <button class="btn-films" @click="onClickBtn('films')">
         Get Films
-      </button>
-      <button class="btn-serials" @click="onClickBtn('serials')">
+      </button> -->
+      <!-- <button class="btn-serials" @click="onClickBtn('serials')">
         Get Serials
-      </button>
+      </button> -->
     </div>
 
     <input type="file" id="file-selector" multiple @change="selectedFile($event)">
@@ -23,22 +23,32 @@
               <input type="text" placeholder="search" @keyup="filterInput($event, 'title', 'title')">
             </div>
             <div class="header-key header-year">
-              <span class="header-year-text padding-left-05 padding-right-05" @click="sortBy('year')">Year<i class="margin-left-1 arrow" :class="{'down':!sortYear, 'up':sortYear}"></i></span>
-              <div>
-                Min:<input type="text" placeholder="search" @keyup="filterInput($event, 'min-year', 'year', true)">
+              <div class="header-year-text padding-left-05 padding-right-05" @click="sortBy('year')">
+                <span>Year</span>
+                <i class="margin-left-1 arrow" :class="{'down':!sortYear, 'up':sortYear}"></i>
               </div>
-              <div>
-                Max:<input type="text" placeholder="search" @keyup="filterInput($event, 'max-year', 'year', true)">
+              <div class="col-flex-row">
+                <div class="label-min-max">Min:</div>
+                <input type="text" placeholder="search" @keyup="filterInput($event, 'min-year', 'year', true)">
+              </div>
+              <div class="col-flex-row">
+                <div class="label-min-max">Max:</div>
+                <input type="text" placeholder="search" @keyup="filterInput($event, 'max-year', 'year', true)">
               </div>
             </div>
             <div class="header-key header-status"  @click="sortBy('status')">Status</div>
             <div class="header-key header-rating">
-              <span class="header-rating-text padding-left-05 padding-right-05" @click="sortBy('rating')">Rating<i class="margin-left-1 arrow" :class="{'down':!sortRating, 'up':sortRating}"></i></span>
-              <div>
-                Min:<input type="text" placeholder="search" @keyup="filterInput($event, 'min-rating', 'rating',  true)">
+              <div class="header-rating-text padding-left-05 padding-right-05" @click="sortBy('rating')">
+                <span>Rating</span>
+                <i class="margin-left-1 arrow" :class="{'down':!sortRating, 'up':sortRating}"></i>
               </div>
-              <div>
-                Max:<input type="text" placeholder="search" @keyup="filterInput($event, 'max-rating', 'rating', true)">
+              <div class="col-flex-row">
+                <div class="label-min-max">Min:</div>
+                <input type="text" placeholder="search" @keyup="filterInput($event, 'min-rating', 'rating',  true)">
+              </div>
+              <div class="col-flex-row">
+                <div class="label-min-max">Max:</div>
+                <input type="text" placeholder="search" @keyup="filterInput($event, 'max-rating', 'rating', true)">
               </div>
             </div>
             <div class="header-key header-link"  @click="sortBy('link')">Link</div>
