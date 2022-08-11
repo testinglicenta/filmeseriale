@@ -59,6 +59,15 @@ html{
   background-color: lightblue;
 }
 
+.header-year-text,
+.header-rating-text{
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  margin-right: 3px;
+  margin-bottom: 3px;
+}
+
 .header-index,
 .content-index{
   flex-basis: 3%;
@@ -137,3 +146,12 @@ html{
   -webkit-transform: rotate(45deg);
 }
 /* __________________________ */
+
+
+.col-flex-row{
+  display: flex;
+}
+
+.label-min-max{
+  width: 35px;
+}
